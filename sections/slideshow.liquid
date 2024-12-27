@@ -1,0 +1,189 @@
+<slideshow-component
+  id="slideshow-{{ section.id }}"
+  class="slideshow slideshow--{{ section.settings.slide_height }}"
+  data-active-slide="0"
+  data-autoplay="{{ section.settings.autoplay }}"
+  {% if section.settings.autoplay %}
+    aria-live="polite"
+    data-autoplay-speed="{{ section.settings.autoplay_speed }}"
+  {% endif %}
+>
+  <div class="slideshow__slides">
+    {% content_for "blocks" %}
+  </div>
+
+  {% if section.blocks.size > 1 %}
+    {% content_for "block", type: "slideshow-controls", id: "slideshow-controls" %}
+  {% endif %}
+</slideshow-component>
+
+{% schema %}
+{
+  "name": "Slideshow",
+  "class": "section--has-background",
+  "blocks": [{ "type": "slide" }],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Slideshow height"
+    },
+    {
+      "type": "select",
+      "id": "slide_height",
+      "options": [
+        {
+          "value": "adapt_image",
+          "label": "Adapt to first image"
+        },
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        }
+      ],
+      "default": "medium",
+      "label": "Slide height"
+    },
+    {
+      "type": "header",
+      "content": "Slideshow style"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "label": "Autoplay speed",
+      "min": 3,
+      "max": 7,
+      "step": 1,
+      "unit": "s",
+      "default": 5
+    }
+  ],
+  "presets": [
+    {
+      "name": "Slideshow",
+      "blocks": [
+        {
+          "type": "slide",
+          "blocks": [
+            {
+              "type": "group",
+              "settings": {
+                "layout": {
+                  "flex-direction": "column",
+                  "justify-content": "flex-start"
+                },
+                "size": {
+                  "width": "50%",
+                  "flex-grow": "0",
+
+                  "@media (--mobile)": {
+                    "width": "100%"
+                  }
+                },
+                "spacing": {
+                  "padding": "50px",
+
+                  "@media (--mobile)": {
+                    "padding": "20px"
+                  }
+                }
+              },
+              "blocks": [
+                {
+                  "type": "heading",
+                  "settings": {
+                    "heading": "Image slide",
+                    "heading_size": "h1"
+                  }
+                },
+                {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Tell your brand's story through images</p>"
+                  }
+                },
+                {
+                  "type": "link",
+                  "settings": {
+                    "label": "Button label",
+                    "spacing": {
+                      "padding": "10px 30px"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "slide",
+          "blocks": [
+            {
+              "type": "group",
+              "settings": {
+                "layout": {
+                  "flex-direction": "column",
+                  "justify-content": "flex-start"
+                },
+                "size": {
+                  "width": "50%",
+                  "flex-grow": "0",
+
+                  "@media (--mobile)": {
+                    "width": "100%"
+                  }
+                },
+                "spacing": {
+                  "padding": "50px",
+
+                  "@media (--mobile)": {
+                    "padding": "20px"
+                  }
+                }
+              },
+              "blocks": [
+                {
+                  "type": "heading",
+                  "settings": {
+                    "heading": "Image slide",
+                    "heading_size": "h1"
+                  }
+                },
+                {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Tell your brand's story through images</p>"
+                  }
+                },
+                {
+                  "type": "link",
+                  "settings": {
+                    "label": "Button label",
+                    "spacing": {
+                      "padding": "10px 30px"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
